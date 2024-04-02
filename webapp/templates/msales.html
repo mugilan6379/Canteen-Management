@@ -1,0 +1,102 @@
+{% extends 'base_a.html' %}
+{% block content %}
+
+
+
+<center>
+<font size="+1" color="red">{{years}}
+<br>
+<font size="" color=""><h2>Monthly Sales Prediction</h2><br></font>
+<form method="post" action="/msaleprediction/">
+	{% csrf_token %}
+	<table id="tab" width="60%">
+	<tr>
+		<td><input type="month" required name="month"  class="form-control">
+		<tr><td><input type="submit" value="Predict" class="form-control"></td>
+	</tr>
+	</table>
+</form>
+<br><br><br><br><br>	
+<body>
+    <!-- Create a canvas element for the line chart -->
+    <canvas id="lineChart" width="100" height="100"></canvas>
+
+    <!-- Create a canvas element for the table -->
+    <canvas id="tableChart" width="400" height="100"></canvas>
+
+    <script>
+        // Data for the line chart
+        var years = {{yea}};
+        var data = {{sales}};
+
+        // Data for the table
+        var tableData = [];
+        for (var i = 0; i < years.length; i++) {
+            tableData.push([years[i], data[i]]);
+        }
+
+        // Get the context of the line chart canvas
+        var lineCtx = document.getElementById('lineChart').getContext('2d');
+        var lineChart = new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: 'Sales in Amount',
+                    data: data,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Year'
+                        }
+                    }],
+                    y: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Sales in Amount'
+                        }
+                    }]
+                }
+            }
+        });
+
+        // Get the context of the table chart canvas
+        var tableCtx = document.getElementById('tableChart').getContext('2d');
+        var tableChart = new Chart(tableCtx, {
+            type: 'table',
+            data: {
+                labels: ['Year', 'Sales in Amount'],
+                datasets: [{
+                    data: tableData
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 10,
+                        top: 10,
+                        bottom: 10
+                    }
+                }
+            }
+        });
+    </script>
+
+
+</body>
+
+
+
+{% endblock %}

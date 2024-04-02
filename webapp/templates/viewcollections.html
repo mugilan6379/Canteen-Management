@@ -1,0 +1,20 @@
+{% extends 'base_a.html' %}
+{% block content %}
+
+<center>
+<h2>View Daily History</h2>
+<br>
+<table id="tab" width="60%">
+<tr><th>Sno.<th>Student Email<th>Item Name<th>Cost<th>Quantity<th>Grand Total
+{% for d in list %}
+<tr><td>{{forloop.counter}}<td>{{d.semail}}<td>{{d.itemname}}<td>{{d.itemcost}}<td>{{d.tot}}<td>{{d.totcost}}
+   {% endfor %}
+<tr>
+    {% for d,v in amts.items %}
+    <td colspan=6><center><h3>Today's Collections $ {{v}}</h3></center></td>
+    {% endfor %}
+</tr>
+</table>
+</center>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base_a.html' %}
+{% block content %}
+
+<h1>View Day Wise Collection</h1>
+
+<br><form method="post" action="/dailycollectionsaction/" enctype="multipart/form-data">
+	{% csrf_token %} 
+<center>
+<table id="tab"  width="60%" cellspacing="10">
+<tr><th>Daily Collection
+<tr><td>
+
+<input class="form-control"  type="text" name="date" placeholder="Enter Date (DD-MM-YYYY) " required="required" >
+<tr><td>
+
+
+<tr><td><br><input type="submit" class="form-control" value="View">
+                
+</table>
+</center>
+</form>
+
+
+
+{% endblock %}

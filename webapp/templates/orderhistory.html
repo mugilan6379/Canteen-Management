@@ -1,0 +1,17 @@
+{% extends 'base_s.html' %}
+{% block content %}
+
+<center>
+<h2>View Order History</h2>
+<br>
+<table id="tab" width="60%">
+<tr><th>Sno.<th>Date<th>Item Name<th>Cost<th>Quantity<th>Grand Total<th>Status<th>OTP
+{% for d in orders %}
+
+<tr><td>{{forloop.counter}}<td>{{d.orderdate}}<td>{{d.itemname}}<td>{{d.itemcost}}<td>{{d.tot}}<td>{{d.totcost}}<td>{{d.status}}<td>{{d.otp}}
+    {% endfor %}
+
+</table>
+</center>
+
+{% endblock %}

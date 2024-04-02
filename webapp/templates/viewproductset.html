@@ -1,0 +1,17 @@
+{% extends 'base_a.html' %}
+{% block content %}
+
+<center>
+<h2>View Product Sales</h2>
+<br>
+<table id="tab" width="60%">
+<tr><th>Sno.<th>item<th>sold
+{% for d in data %}
+
+<tr><td>{{forloop.counter}}<td>{{d.itemname}}<td>{{d.dcount}}
+{% endfor %}
+
+</table>
+
+
+{% endblock %}

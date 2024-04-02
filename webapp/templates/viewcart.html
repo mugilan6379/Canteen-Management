@@ -1,0 +1,66 @@
+{% extends 'base_s.html' %}
+
+{% load static %}
+
+{% block content %}
+			<div class="checkout-right">
+				<table class="timetable_sub">
+					<thead>
+						<tr>
+							<th>SL No.</th>	
+							<th>Product Name</th>
+							<th>Product Cost</th>
+							<th>Quantity</th>
+					
+							<th>Price</th>
+						</tr>
+					</thead>
+
+
+						{% for d in data %}
+
+					<tr class="rem1">
+						<td class="invert">{{ forloop.counter }}</td>
+						<td class="invert">{{d.itemname}}</td>
+						<td class="invert">{{d.itemcost}}</td>
+						<td class="invert">{{d.tot}}</td>
+						<td class="invert">{{d.totcost}}</td>
+							
+
+						
+						{% endfor %}	
+
+</table>
+
+<div class="checkout-left">	
+				<div class="">
+				
+						<table width="40%" id="tab">
+						<tr><th colspan="2"><h4>Continue to basket</h4>
+					
+						{% for d in data %}
+
+
+						<tr><td>
+						{{d.itemname}} <td> <span> ${{d.totcost}} </span></li>
+						
+						{% endfor %}
+						
+						
+					<tr><th>Total <th> <span> ${{totcost}}</span></li>
+							<tr><td><form method="get" action="/emptycart/">
+					<input type="submit" value="Clear Cart"></form></td>	 
+					<td><form method="get" action="/purchase/">
+						<input type="submit" value="Purcha$e">
+					</form>
+					</table>	
+					</ul>
+				</div>
+				
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+
+</div>
+
+{% endblock %}
